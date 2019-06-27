@@ -13,7 +13,6 @@ function FriendCard({ friend }) {
         <div className="friend-email">
           Email: <em>{email}</em>
         </div>
-        ))}
         </Link>
       </div>
     );

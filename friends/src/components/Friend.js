@@ -25,11 +25,6 @@ export default class Friend extends Component {
                 });
         };
 
-        saveFriend = () => {
-            const addToFriendList = this.props.addToFriendList;
-            addToFriendList(this.state.friend);
-        };
-
         render() {
             if (!this.state.friend) {
                 return <div> Loading... Please wait...</div>

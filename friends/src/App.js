@@ -1,31 +1,48 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import ReactDOM from 'react-dom';
+import { Route, NavLink } from 'react-router-dom';
+import axios from 'axios';
 import FriendList from './components/FriendList';
 import Friend from './components/Friend';
+import NewFriend from './components/NewFriend';
+import EditFriend from './components/EditFriend';
 import './App.css';
 
 export default class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      friendList: []
-    }
+  state = {
+    friendlist: []
   }
 
-  addToFriendList = friend => {
-    const friendList = this.state.friendList;
-    friendList.push(friend);
-    this.setState({ friendList });
-  };
+  componentDidMount() {
+		axios.get('http://localhost:5000/items')
+			.then(response => {
+				this.setState({
+					friendList: response.data
+				})
+			})
+			.catch(err => {
+				console.log('Error:', err)
+      })
+  }
+
+  updateFriends = (friendList) => {
+    this.setState({ friendList})
+  }
   
   render() {
+    const { friendList } = this.state
       return (
-          <div>
-            <FriendList list={this.state.friendList} />
-            <div>
-              <Route exact path="/" component={FriendList} />
-              <Route path="/friends/:id" component={Friend} />
+        <div className = "App">
+          <nav>
+            <h1 className = "header">Lambda Friends</h1>
+            <div className="nav-links">
+              <NavLink to="/">Home</NavLink>
+              <NavLink to="/EditFriend">Edit Lambda Friends List</NavLink>
+              <NavLink to="/AddFriend">Add a new Lambda Friend</NavLink>
             </div>
+          </nav>
+              
+
           </div>
       )
   }
