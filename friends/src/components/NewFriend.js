@@ -18,8 +18,8 @@ export default class NewFriend extends Component {
     addNewFriend = (evt) => {
         evt.preventDefault()
 
-        const { name, age, email } = this.state
-        const friendAttr = {name, age, email}
+        const { name, age, email, } = this.state
+        const friendAttr = { name, age, email }
 
         axios.post("http://localhost:5000/friends", friendAttr)
             .then((response) => {
@@ -39,16 +39,18 @@ export default class NewFriend extends Component {
     }
 
     render() {
-        const { name, age, email } = this.state
+        const { name, age, email, errorMessage } = this.state
 
         return (
             <form onSubmit={this.addNewFriend}>
                 <h1>Add New Lambda Friend</h1>
-                {/* <p>{errorMessage}</p> */}
+                <p>{errorMessage}</p>
 
                 <input type="text" name="name" placeholder="Name" value={name} onChange={this.handleChange} />
                 <input type="number" name="age" placeholder="Age" value={age} onChange={this.handleChange} />
                 <input type="text" name="email" placeholder="Email" value={email} onChange={this.handleChange} />
+
+                <button type="button">Add friend</button>
             </form>    
         )
     }

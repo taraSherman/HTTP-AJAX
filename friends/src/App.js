@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import axios from 'axios';
 import FriendList from './components/FriendList';
-import FriendCard from './components/FriendCard';
+// import FriendCard from './components/FriendCard';
 import Friend from './components/Friend';
 import NewFriend from './components/NewFriend';
 import EditFriend from './components/EditFriend';
@@ -40,7 +40,7 @@ export default class App extends Component {
           </nav>
           
           <Route path="/" exact render={(props) => <App {...props} friends={friends} />} />
-          <Route path="/FriendCard" exact render={(props) => <FriendCard {...props} friends={friends} />} />
+          {/* <Route path="/FriendCard" exact render={(props) => <FriendCard {...props} friends={friends} />} /> */}
           <Route path="/Friend/:id" exact render={(props) => <Friend {...props} friends={friends} />} />
           <Route path="/EditFriend/:id" exact render={(props) => <EditFriend {...props} updateFriends={this.updateFriends} />} />
           <Route path="/NewFriend/:id" exact render={(props) => <NewFriend {...props} updateFriends={this.updateFriends} />} />
