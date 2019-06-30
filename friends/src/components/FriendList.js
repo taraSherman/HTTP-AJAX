@@ -10,7 +10,7 @@ export default class FriendList extends Component {
     componentDidMount() {
         // get friends list from server
         axios
-            .get('http://localhost:5000/friends')
+            .get('http://localhost:5000/api/friends')
             .then(response => {
                 this.setState(() => ({
                     friends: response.data
