@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import { Route, NavLink } from 'react-router-dom';
-import axios from 'axios';
-import FriendList from './components/FriendList';
 import './App.css';
 
 export default class App extends Component {
@@ -9,23 +6,10 @@ export default class App extends Component {
     // initial state
     friends: []
   }
-
-  componentDidMount() {
-    // get friends list from server
-    axios
-        .get('http://localhost:5000/friends')
-        .then(response => {
-            this.setState(() => ({
-                friends: response.data
-            }));
-        })
-        .catch(err => {
-            console.log('Server Error', err);
-        });
 }
 
   updateFriends = (friends) => {
-    // function to be called later
+    // function to be called later when there is any change to the data
     this.setState({ friends})
   }
   
@@ -34,8 +18,9 @@ export default class App extends Component {
         <div className = "App">
           <h1 className = "header">Lambda School Friends List</h1>
           
-          {/* set route to FriendList */}
-          <Route path="/" exact render={(props) => <FriendList {...props} friends={this.props.friends} updateFriends = {this.updateFriends} />} />
+          {/* set routes to FriendList and individual friend by id */}
+          <Route exact path="/" render={(props) => <FriendList {...props} friends={this.props.friends} updateFriends = {this.updateFriends} />} />
+          <Route path="/friends/:id" component={Friend} />
           </div>
       )
   }
