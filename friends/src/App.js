@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, NavLink } from 'react-router-dom';
 import axios from 'axios';
-import FriendList from './components/FriendList';
+import Home from './components/Home';
+// import FriendList from './components/FriendList';
 // import FriendCard from './components/FriendCard';
 import Friend from './components/Friend';
 import NewFriend from './components/NewFriend';
@@ -34,13 +35,10 @@ export default class App extends Component {
     const { friends } = this.state
       return (
         <div className = "App">
-          <nav>
-            <h1 className = "header">Lambda Friends</h1>
-            <FriendList />
-          </nav>
+          <h1 className = "header">Lambda School Friends List</h1>
           
-          <Route path="/" exact render={(props) => <App {...props} friends={friends} />} />
-          {/* <Route path="/FriendCard" exact render={(props) => <FriendCard {...props} friends={friends} />} /> */}
+          
+          <Route path="/" exact render={(props) => <Home {...props} friends={friends} />} />
           <Route path="/Friend/:id" exact render={(props) => <Friend {...props} friends={friends} />} />
           <Route path="/EditFriend/:id" exact render={(props) => <EditFriend {...props} updateFriends={this.updateFriends} />} />
           <Route path="/NewFriend/:id" exact render={(props) => <NewFriend {...props} updateFriends={this.updateFriends} />} />

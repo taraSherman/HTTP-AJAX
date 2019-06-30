@@ -8,7 +8,6 @@ export default function(props) {
 
     return (
         <div>
-            <h3>Lambda School Friendss List</h3>
             <button onClick={randomFriend}>Random Friend</button>
         </div>
     )
